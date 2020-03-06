@@ -1,0 +1,52 @@
+<div class="container">
+  <form [formGroup]="form" method="post">
+    <div class="form-group">
+      <label >From: </label>
+      <input #fromStation type="text" class="form-control" name="from" formControlName="from">
+    </div>
+        
+    <div class="form-group">
+      <label >To: </label>
+      <input #toStation type="text" class="form-control" name="to" formControlName="to">
+    </div>
+       
+        <br>
+        <button mat-raised-button color="primary" (click)='callAPI(fromStation.value,toStation.value)' type="submit" [disabled]="form.invalid">Search</button>
+        <br>
+  </form>
+
+  <div *ngIf="trainInformation">
+        
+    <span><h2>{{trainInformation.timestamp * 1000 | date : 'EEEE dd/LLL/yyyy'}}</h2></span>
+    <div> 
+      <span><h2>{{'Train Departure'}}</h2></span>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table_train">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="station">
+          <th mat-header-cell *matHeaderCellDef> Station</th>
+          <td mat-cell *matCellDef="let train"> {{train.station}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="departure">
+          <th mat-header-cell *matHeaderCellDef>Departure</th>
+          <td mat-cell *matCellDef="let train"> {{train.departure * 1000 | date : ' HH : mm'}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="platform">
+          <th mat-header-cell *matHeaderCellDef> Platform</th>
+          <td mat-cell *matCellDef="let train"> {{train.platform}} </td>
+        </ng-container>
+         
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <app-from-arr [dataSource]="dataSource_arr"></app-from-arr>
+  </div>
+      
+</div>

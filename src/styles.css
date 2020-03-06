@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css');
+body{
+  background-color: #909797;
+}
+ table{
+   width:100%;
+   text-align: center ;
+   background-color: #909797;
+   
+   
+ }
+  .table_train th.mat-header-cell {
+    width: 33% ;
+    background-color: #88f1f1;
+    color: #215050;
+    text-align: center ;
+    border-radius: 50%;
+    font-size:1.3rem;
+    
+  }
+  td{
+   width:33%;
+    background-color: #ab96bd;
+    color: rgb(182, 181, 99);
+    border-radius: 50%;
+  }
