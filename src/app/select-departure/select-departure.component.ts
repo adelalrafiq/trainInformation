@@ -4,36 +4,41 @@ import { timer } from 'rxjs';
 import { switchMap, withLatestFrom, tap, startWith } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 export interface PeriodicElement {
   station: string;
   departure: any;
-  platform: any;  
+  platform: any;
+  
 }
 
 @Component({
-  selector: 'app-fromstation',
-  templateUrl: './fromstation.component.html',
-  styleUrls: ['./fromstation.component.css']
+  selector: 'app-select-departure',
+  templateUrl: './select-departure.component.html',
+  styleUrls: ['./select-departure.component.css']
 })
-export class FromstationComponent implements OnInit {
+export class SelectDepartureComponent implements OnInit {
   displayedColumns: string[] = ['station', 'departure','platform'];
   dataSource = [];
   dataSource_arr = [];
 
   title = 'Train Information';
   result:any;
+  fromStation: any;
+  toStation:any; 
   trainInformation:any;
 
   form = new FormGroup({
-    from: new FormControl('', [Validators.required]),
-    to: new FormControl('', [Validators.required]),
+  from: new FormControl('', [Validators.required]),
+  to: new FormControl('', [Validators.required]),
   })
-
+  stations$ = this.call.getAllStations()
   constructor(private call:ApidataService) { }
 
   ngOnInit(): void {
   }
-  //call api
+
+  //callAPI
   callAPI(from,to){
     timer(0,60000).pipe(
       withLatestFrom(this.form.valueChanges.pipe(startWith(this.form.value))),

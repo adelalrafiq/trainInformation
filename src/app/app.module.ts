@@ -11,8 +11,17 @@ import { FromstationComponent } from './fromstation/fromstation.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ArrivalComponent } from './arrival/arrival.component';
 import { FromArrComponent } from './from-arr/from-arr.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AlertComponent } from './alert/alert.component';
+import { SelectDepartureComponent } from './select-departure/select-departure.component';
+import { SelectArrivalComponent } from './select-arrival/select-arrival.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { TitleComponent } from './title/title.component';
+import { ShowAllComponent } from './show-all/show-all.component';
 
- 
+
 
 
 @NgModule({
@@ -21,7 +30,13 @@ import { FromArrComponent } from './from-arr/from-arr.component';
     StationComponent,
     FromstationComponent,
     ArrivalComponent,
-    FromArrComponent   
+    FromArrComponent,
+    AlertComponent,
+    SelectDepartureComponent,
+    SelectArrivalComponent,
+    NavbarComponent,
+    TitleComponent,
+    ShowAllComponent   
   ],
   imports: [
     BrowserModule,
@@ -31,7 +46,12 @@ import { FromArrComponent } from './from-arr/from-arr.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

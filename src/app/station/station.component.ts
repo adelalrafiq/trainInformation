@@ -1,7 +1,10 @@
+import { AlertComponent } from './../alert/alert.component';
 import { Component, OnInit } from '@angular/core';
 import { ApidataService } from '../services/apidata.service';
-import { timer } from 'rxjs';
+
+import { timer, pipe } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface PeriodicElement {
   station: string;
@@ -16,20 +19,47 @@ export interface PeriodicElement {
 })
 export class StationComponent implements OnInit {
   
-    
-
+  isDialogOpen=false;
+  
+ 
   displayedColumns: string[] = ['station', 'departure','platform'];
   dataSource = [];
   dataSource_arr = [];
 
-  title = 'Train Departure';
+  title = 'Train Information';
   result:any;
   trainInformation:any; 
 
-  constructor(private call:ApidataService) { }
+  stations$ = this.call.getAllStations()
+
+  constructor(private call:ApidataService,public dialog: MatDialog) { }
   
   ngOnInit(): void {
-   
+ /*  let theDate = new Date(),
+      now = Date.now(),
+      sec = 1000,
+      min = sec * 60,
+      hour = min * 60,
+      day = hour * 24,
+      month = day * 30,
+      year = month *12;
+  
+  console.log(Math.round(now /sec)); */
+
+  /* let theDate = new Date(),
+      myDate = Date.parse("25 october 1982 12:20:05"),
+      sec = 1000,
+      min = sec * 60,
+      hour = min * 60,
+      day = hour * 24,
+      month = day * 30,
+      year = month *12;
+  
+  console.log(Math.round(myDate /year)); */
+  
+    
+    
+    
   }
 
   //call api
@@ -40,6 +70,10 @@ export class StationComponent implements OnInit {
     ))
     .subscribe(
       next=>{
+        
+        if(this.isDialogOpen = true){
+          this.closeDialog();
+        }
         console.log(next);
         this.trainInformation = next;
         this.dataSource=[
@@ -52,12 +86,35 @@ export class StationComponent implements OnInit {
              arrival: this.trainInformation.connection[0].arrival.time,
              platform: this.trainInformation.connection[0].arrival.platform           
             }]
-
-
+            const now = Date.now();
+            const sec = 1000;
+            const min = sec * 60;
+            const current = Math.floor(now / min);
+             console.log(this.dataSource[0].departure / 60);
+             console.log(current);
+             
+             
+      if(current === Math.floor(this.dataSource[0].departure / 60)){
+        this.openDialog();
+     
+}
+          
       },
       error=>{
         console.log(error);
       },
     )  
   }
+
+  openDialog() {
+    this.dialog.open( AlertComponent );
+
+  }
+
+  closeDialog(){
+    this.dialog.closeAll( );
+  }
+  
+   
 }
+

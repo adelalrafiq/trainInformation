@@ -1,11 +1,20 @@
 @import url('https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css');
 body{
-  background-color: #909797;
+  background-color: #624c66;
 }
- table{
+h1{
+  color: burlywood;
+  text-shadow:2px 2px grey;
+  
+}
+img{
+  border-radius: 50%;
+}
+.mat-table {
    width:100%;
    text-align: center ;
-   background-color: #909797;
+   background-color: #624c66;
+   box-shadow: none;
    
    
  }
@@ -14,13 +23,14 @@ body{
     background-color: #88f1f1;
     color: #215050;
     text-align: center ;
-    border-radius: 50%;
     font-size:1.3rem;
+    border-radius: 50%;
     
   }
-  td{
+  .mat-cell {
    width:33%;
     background-color: #ab96bd;
-    color: rgb(182, 181, 99);
+    font-weight: bold;
+    font-size:1rem;
     border-radius: 50%;
   }
