@@ -30,36 +30,10 @@ export class StationComponent implements OnInit {
   result:any;
   trainInformation:any; 
 
-  stations$ = this.call.getAllStations()
-
   constructor(private call:ApidataService,public dialog: MatDialog) { }
   
   ngOnInit(): void {
- /*  let theDate = new Date(),
-      now = Date.now(),
-      sec = 1000,
-      min = sec * 60,
-      hour = min * 60,
-      day = hour * 24,
-      month = day * 30,
-      year = month *12;
-  
-  console.log(Math.round(now /sec)); */
-
-  /* let theDate = new Date(),
-      myDate = Date.parse("25 october 1982 12:20:05"),
-      sec = 1000,
-      min = sec * 60,
-      hour = min * 60,
-      day = hour * 24,
-      month = day * 30,
-      year = month *12;
-  
-  console.log(Math.round(myDate /year)); */
-  
-    
-    
-    
+ 
   }
 
   //call api
